@@ -112,9 +112,9 @@ export const PageTreeViewItem = ({
             onMouseLeave={() => setIsHovered(false)}
             onClick={onItemClick}>
             <Flex align="center" gap={3}>
-              <Flex gap={2} direction="column" className="p-2">
-                <Text className="text-sm font-medium text-[#252837]">{page.title}</Text>
-                <UrlText className="text-[0.8125rem] text-[#515870]" isDisabled={isDisabled || (!page.isPublished && page.isDraft)} textOverflow="ellipsis">
+              <Flex gap={2} direction="column" padding={2}>
+                <Text size={2} weight="medium">{page.title}</Text>
+                <UrlText size={1} isDisabled={isDisabled || (!page.isPublished && page.isDraft)} textOverflow="ellipsis">
                   {parentPath ? (page.slug?.current ?? 'untitled') : (getRootPageSlug(page, config) ?? '/')}
                 </UrlText>
               </Flex>
