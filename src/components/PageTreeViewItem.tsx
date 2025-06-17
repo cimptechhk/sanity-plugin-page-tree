@@ -113,8 +113,8 @@ export const PageTreeViewItem = ({
             onClick={onItemClick}>
             <Flex align="center" gap={3}>
               <Flex gap={2} direction="column" padding={2}>
-                <Text size={2} weight="medium">{page.title}</Text>
-                <UrlText size={1} isDisabled={isDisabled || (!page.isPublished && page.isDraft)} textOverflow="ellipsis">
+                <Text size={1} weight="medium">{page.title}</Text>
+                <UrlText size={0} isDisabled={isDisabled || (!page.isPublished && page.isDraft)} textOverflow="ellipsis">
                   {parentPath ? (page.slug?.current ?? 'untitled') : (getRootPageSlug(page, config) ?? '/')}
                 </UrlText>
               </Flex>
