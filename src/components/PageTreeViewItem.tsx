@@ -113,12 +113,12 @@ export const PageTreeViewItem = ({
             onClick={onItemClick}>
             <Flex align="center" gap={3} padding={2}>
               <Flex gap={2} direction="column">
-                <Text size={1} weight="medium">{page.title}</Text>
-                <UrlText muted={true} size={0} isDisabled={isDisabled || (!page.isPublished && page.isDraft)} textOverflow="ellipsis">
+                <Text>{page.title}</Text>
+                <UrlText isDisabled={isDisabled || (!page.isPublished && page.isDraft)} textOverflow="ellipsis">
                   {parentPath ? (page.slug?.current ?? 'untitled') : (getRootPageSlug(page, config) ?? '/')}
                 </UrlText>
               </Flex>
-              {!isDisabled && !hideActions && (isHovered || hasActionOpen) && (
+              {!isDisabled && !hideActions && (isHovered || hasActionOpen) &&  !page.isPostType &&(
                 <PageTreeViewItemActions
                   page={page}
                   onActionOpen={() => setHasActionOpen(true)}
@@ -196,8 +196,6 @@ const Item = styled(Flex)<{ hasMarginLeft: boolean; isSelected: boolean; isDisab
 const UrlText = styled(Text)<{ isDisabled: boolean }>`
   min-width: 0;
   opacity: ${({ isDisabled }) => (isDisabled ? 0.5 : 1)};
-  color: #515870;
-  font-size: 0.8125rem;
 `;
 
 const ChildContainer = styled(Card)`
