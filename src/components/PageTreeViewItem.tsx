@@ -15,7 +15,7 @@ import { PageTreeViewItemStatus } from './PageTreeViewItemStatus';
 
 export type PageTreeViewItemProps = {
   parentPath?: string;
-  page: NestedPageTreeItem;
+  page: any;
   onToggle: (page: NestedPageTreeItem) => void;
   onClick?: (page: NestedPageTreeItem) => void;
   openItemIds: string[];
@@ -82,6 +82,7 @@ export const PageTreeViewItem = ({
     return openItemIds.some(id => flatPageIds.includes(id));
   }, [page._id, page.children, forceOpen, openItemIds]);
 
+  console.log(page);
   return (
     <Card>
       <Stack flex={1}>
@@ -118,7 +119,7 @@ export const PageTreeViewItem = ({
                   {parentPath ? (page.slug?.current ?? 'untitled') : (getRootPageSlug(page, config) ?? '/')}
                 </UrlText>
               </Flex>
-              {!isDisabled && !hideActions && (isHovered || hasActionOpen) &&  !page.isPostType &&(
+              {!isDisabled && !hideActions && (isHovered || hasActionOpen) && !page.isPostType && (
                 <PageTreeViewItemActions
                   page={page}
                   onActionOpen={() => setHasActionOpen(true)}
@@ -134,7 +135,7 @@ export const PageTreeViewItem = ({
             <VerticalLine />
             {hasChildren && (
               <Stack paddingY={1} space={2}>
-                {page.children.map(childPage => (
+                {page.children.map((childPage: any) => (
                   <PageTreeViewItem
                     key={childPage._id}
                     page={childPage}
